@@ -11,51 +11,6 @@ The main objective of this internship is to develop a WiFi packet sniffer using 
 
 ---
 
-# WiFi Security: WPA2-PSK vs WPA2-Enterprise
-
-## What is WPA2-PSK?
-- **Pre-Shared Key (PSK):** Everyone connects to the WiFi using the same password (the "pre-shared key").
-- **Typical Use:** Homes, small offices, cafes.
-- **Setup:** Simple. Set a password on the router, everyone uses it.
-- **Security:**
-  - If someone knows the password, they can connect.
-  - If the password is leaked, you must change it for everyone.
-  - No user-specific tracking or control.
-- **ESP32 Example:**
-  ```cpp
-  WiFi.begin("SSID", "password");
-  ```
-
-## What is WPA2-Enterprise?
-- **Enterprise Authentication:** Each user logs in with their own username and password (often institutional/company credentials).
-- **Typical Use:** Universities (like eduroam), large companies, government.
-- **Setup:** More complex. Requires a RADIUS server and special configuration.
-- **Security:**
-  - Each user has their own credentials.
-  - If a user leaves, you can disable just their account.
-  - Supports advanced authentication (EAP, PEAP, certificates).
-  - More secure against password sharing and attacks.
-- **ESP32 Example:**
-  ```cpp
-  WiFi.begin("SSID"); // No password here
-  esp_wifi_sta_wpa2_ent_set_identity(...);
-  esp_wifi_sta_wpa2_ent_set_username(...);
-  esp_wifi_sta_wpa2_ent_set_password(...);
-  esp_wifi_sta_wpa2_ent_enable();
-  ```
-
-### Summary Table
-| Feature            | WPA2-PSK                | WPA2-Enterprise           |
-|--------------------|-------------------------|---------------------------|
-| Login method       | Shared password         | Individual username/pass  |
-| User management    | All users same key      | Per-user accounts         |
-| Security           | Good for small groups   | Best for large orgs       |
-| Setup complexity   | Very easy               | More complex (needs server)|
-| ESP32 code         | Simple                  | Needs special API         |
-| Example use        | Home WiFi, cafes        | Universities, companies   |
-
----
-
 # 9 Jul 2025 — Simple Setup and Getting Familiar
 
 ## What We Did
@@ -74,6 +29,57 @@ The main objective of this internship is to develop a WiFi packet sniffer using 
   - Do **not** use the config struct or macro. Instead, just call `esp_wifi_sta_wpa2_ent_enable();` with no arguments.
   - Set identity, username, and password using the provided API functions.
   - This approach works reliably in PlatformIO and Arduino IDE.
+
+---
+
+## WPA2-PSK vs WPA2-Enterprise: How Are They Different?
+
+### WPA2-PSK (Pre-Shared Key)
+- **How it works:** Everyone connects using the same WiFi password (the "pre-shared key").
+- **Where used:** Homes, small offices, cafes.
+- **Setup:** Simple—set a password on the router, everyone uses it.
+- **Security:**
+  - If someone knows the password, they can connect.
+  - If leaked, you must change it for everyone.
+  - No user-specific tracking or control.
+- **ESP32 Arduino:**
+  ```cpp
+  WiFi.begin("SSID", "password");
+  ```
+
+### WPA2-Enterprise
+- **How it works:** Each user logs in with their own username and password (often institutional credentials).
+- **Where used:** Universities (like eduroam), large companies, government.
+- **Setup:** More complex—requires a RADIUS server and special access point configuration.
+- **Security:**
+  - Each user has their own credentials.
+  - If a user leaves, you can disable just their account.
+  - Supports advanced authentication (EAP, PEAP, certificates).
+  - More secure against password sharing and attacks.
+- **ESP32 Arduino:**
+  ```cpp
+  WiFi.begin("SSID"); // No password here
+  esp_wifi_sta_wpa2_ent_set_identity(...);
+  esp_wifi_sta_wpa2_ent_set_username(...);
+  esp_wifi_sta_wpa2_ent_set_password(...);
+  esp_wifi_sta_wpa2_ent_enable();
+  ```
+
+### Summary Table
+| Feature            | WPA2-PSK                | WPA2-Enterprise           |
+|--------------------|-------------------------|---------------------------|
+| Login method       | Shared password         | Individual username/pass  |
+| User management    | All users same key      | Per-user accounts         |
+| Security           | Good for small groups   | Best for large orgs       |
+| Setup complexity   | Very easy               | More complex (needs server)|
+| ESP32 code         | Simple                  | Needs special API         |
+| Example use        | Home WiFi, cafes        | Universities, companies   |
+
+**In short:**
+- **WPA2-PSK** is simple and good for small/private networks.
+- **WPA2-Enterprise** is more secure and scalable, best for organizations with many users and higher security needs.
+
+---
 
 ### Working Example for WPA2-Enterprise (eduroam)
 
@@ -157,3 +163,5 @@ void loop() {
 
 # 11 Jul 2025
 (Placeholder)
+
+---
