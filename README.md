@@ -29,8 +29,9 @@ The main objective of this internship is to develop a WiFi packet sniffer using 
   - Do **not** use the config struct or macro. Instead, just call `esp_wifi_sta_wpa2_ent_enable();` with no arguments.
   - Set identity, username, and password using the provided API functions.
   - This approach works reliably in PlatformIO and Arduino IDE.
+  
 
-### Minimal Working Example for WPA2-Enterprise (eduroam)
+### Working Example for WPA2-Enterprise (eduroam)
 
 #### `platformio.ini`
 ```ini
