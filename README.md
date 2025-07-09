@@ -106,11 +106,11 @@ void loop() {
 ---
 
 # 10 Jul 2025
-(Placeholder for tomorrow's log)
+(Placeholder )
 
 ---
 
 # 11 Jul 2025
-(Placeholder for future work)
+(Placeholder)
 
 ---
