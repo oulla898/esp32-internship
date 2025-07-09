@@ -1,3 +1,5 @@
+[View this project on GitHub](https://github.com/oulla898/esp32-internship)
+
 # IAESTE Internship at Ege University Computer Engineering
 **Almoulla Al Maawali**  
 **Start Date:** 9 Jul 2025
@@ -112,8 +114,3 @@ void loop() {
 (Placeholder for future work)
 
 ---
-
-# Notes for Future Me
-- Always check for the latest ESP32 Arduino core and PlatformIO updates.
-- If WPA2 Enterprise types/macros are missing, use the no-argument version of `esp_wifi_sta_wpa2_ent_enable()`.
-- Never commit your real WiFi password or credentials to version control. 
