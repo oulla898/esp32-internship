@@ -11,31 +11,31 @@ The main objective of this internship is to develop a WiFi packet sniffer using 
 
 ---
 
-## WPA2-PSK vs WPA2-Enterprise
+# WiFi Security: WPA2-PSK vs WPA2-Enterprise
 
-### WPA2-PSK (Pre-Shared Key)
-- **How it works:** Everyone connects to the WiFi using the same password (the “pre-shared key”).
-- **Where it’s used:** Homes, small offices, cafes, and most places where you just need to give people a WiFi password.
-- **Setup:** Simple. You set a password on the router, and everyone enters that password to connect.
+## What is WPA2-PSK?
+- **Pre-Shared Key (PSK):** Everyone connects to the WiFi using the same password (the "pre-shared key").
+- **Typical Use:** Homes, small offices, cafes.
+- **Setup:** Simple. Set a password on the router, everyone uses it.
 - **Security:**
   - If someone knows the password, they can connect.
   - If the password is leaked, you must change it for everyone.
   - No user-specific tracking or control.
-- **ESP32 Arduino:** Very easy to connect:
+- **ESP32 Example:**
   ```cpp
   WiFi.begin("SSID", "password");
   ```
 
-### WPA2-Enterprise
-- **How it works:** Each user logs in with their own username and password (often their institutional or company credentials).
-- **Where it’s used:** Universities (like eduroam), large companies, government, and anywhere with many users and a need for better security and user management.
-- **Setup:** More complex. Requires a RADIUS server for authentication, and the WiFi access point must be configured for enterprise mode.
+## What is WPA2-Enterprise?
+- **Enterprise Authentication:** Each user logs in with their own username and password (often institutional/company credentials).
+- **Typical Use:** Universities (like eduroam), large companies, government.
+- **Setup:** More complex. Requires a RADIUS server and special configuration.
 - **Security:**
   - Each user has their own credentials.
   - If a user leaves, you can disable just their account.
-  - Supports advanced authentication methods (like EAP, PEAP, certificates).
+  - Supports advanced authentication (EAP, PEAP, certificates).
   - More secure against password sharing and attacks.
-- **ESP32 Arduino:** Requires special code and libraries (as you’ve seen). You must use the ESP-IDF WPA2 Enterprise API:
+- **ESP32 Example:**
   ```cpp
   WiFi.begin("SSID"); // No password here
   esp_wifi_sta_wpa2_ent_set_identity(...);
@@ -53,10 +53,6 @@ The main objective of this internship is to develop a WiFi packet sniffer using 
 | Setup complexity   | Very easy               | More complex (needs server)|
 | ESP32 code         | Simple                  | Needs special API         |
 | Example use        | Home WiFi, cafes        | Universities, companies   |
-
-**In short:**
-- **WPA2-PSK** is simple and good for small/private networks.
-- **WPA2-Enterprise** is more secure and scalable, best for organizations with many users and higher security needs.
 
 ---
 
@@ -78,7 +74,6 @@ The main objective of this internship is to develop a WiFi packet sniffer using 
   - Do **not** use the config struct or macro. Instead, just call `esp_wifi_sta_wpa2_ent_enable();` with no arguments.
   - Set identity, username, and password using the provided API functions.
   - This approach works reliably in PlatformIO and Arduino IDE.
-  
 
 ### Working Example for WPA2-Enterprise (eduroam)
 
@@ -162,5 +157,3 @@ void loop() {
 
 # 11 Jul 2025
 (Placeholder)
-
----
