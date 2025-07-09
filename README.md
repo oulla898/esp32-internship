@@ -37,7 +37,7 @@ The main objective of this internship is to develop a WiFi packet sniffer using 
 ### WPA2-PSK (Pre-Shared Key)
 - **How it works:** Everyone connects using the same WiFi password (the "pre-shared key").
 - **Where used:** Homes, small offices, cafes.
-- **Setup:** Simple—set a password on the router, everyone uses it.
+- **Setup:** Simple---set a password on the router, everyone uses it.
 - **Security:**
   - If someone knows the password, they can connect.
   - If leaked, you must change it for everyone.
